@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Card = props => {
 	return (
@@ -25,11 +25,17 @@ export const Card = props => {
 					</p>
 				</div>
 				<div className="d-flex justify-content-between">
-					{/* <Link to={`/single/${}`}> */}
-					<button type="button" className="btn btn-light">
-						Details
-					</button>
-					{/* </Link> */}
+					<Link
+						to={{
+							pathname: "/details/" + props.id,
+							state: {
+								props
+							}
+						}}>
+						<button type="button" className="btn btn-light">
+							Details
+						</button>
+					</Link>
 					<button type="button" className="btn btn-danger">
 						<i className="far fa-heart" />
 					</button>
@@ -40,7 +46,7 @@ export const Card = props => {
 };
 
 Card.propTypes = {
-	// id: PropTypes.number,
+	id: PropTypes.number,
 	at0: PropTypes.string,
 	at1: PropTypes.string,
 	at2: PropTypes.string,
@@ -48,5 +54,6 @@ Card.propTypes = {
 	label1: PropTypes.string,
 	label2: PropTypes.string,
 	label3: PropTypes.string,
-	url: PropTypes.string
+	url: PropTypes.string,
+	element: PropTypes.object
 };

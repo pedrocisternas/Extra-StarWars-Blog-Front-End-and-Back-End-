@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar mb-3" style={{ background: "black" }}>
+		<nav className="navbar" style={{ background: "black" }}>
 			<Link to="/">
 				<img
 					className="nav-img img-fluid"
