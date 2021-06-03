@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Card = props => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="card" style={{ width: "18rem", height: "30rem", background: "grey", margin: "2rem" }}>
 			<img src={props.url} className="card-img-top" alt="..." />
@@ -28,15 +31,13 @@ export const Card = props => {
 					<Link
 						to={{
 							pathname: "/details/" + props.id,
-							state: {
-								props
-							}
+							state: { props }
 						}}>
 						<button type="button" className="btn btn-light">
 							Details
 						</button>
 					</Link>
-					<button type="button" className="btn btn-danger">
+					<button onClick={() => actions.addToFavorites(props.at0)} type="button" className="btn btn-danger">
 						<i className="far fa-heart" />
 					</button>
 				</div>

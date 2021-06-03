@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-export const Navbar = () => {
+export const Navbar = props => {
+	const { store, actions } = useContext(Context);
+	const [showDropdown, setShowDropdown] = useState(false);
+
 	return (
 		<nav className="navbar" style={{ background: "black" }}>
 			<Link to="/">
@@ -10,12 +14,34 @@ export const Navbar = () => {
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1024px-Star_Wars_Logo.svg.png"
 				/>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-danger">
-						Favorites <span className="badge badge-light">4</span>
-					</button>
-				</Link>
+			<div className="dropdown ml-auto">
+				<button
+					onClick={() => setShowDropdown(!showDropdown)}
+					className="btn btn-danger dropdown-toggle"
+					type="button"
+					id="dropdownMenuButton"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false">
+					Favorites <span className="badge badge-light">{store.favorites.length}</span>
+				</button>
+				<div
+					className={
+						showDropdown && store.favorites.length > 0 ? "dropdown-menu dropdown-menu-right show" : "d-none"
+					}
+					aria-labelledby="dropdownMenuButton">
+					<ul className="list-group">
+						{store.favorites.map((elm, i) => {
+							return (
+								<li
+									className="dropdown-item list-group-item list-group-item-action list-group-item-light"
+									key={i}>
+									{elm}
+								</li>
+							);
+						})}
+					</ul>
+				</div>
 			</div>
 		</nav>
 	);

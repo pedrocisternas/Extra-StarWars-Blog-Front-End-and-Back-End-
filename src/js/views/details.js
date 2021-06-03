@@ -2,26 +2,39 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { useLocation } from "react-router-dom";
 
 export const Details = props => {
 	let locationProps = useLocation().state.props;
 
 	return (
-		<div className="card mb-3" style={{ maxWidth: "540px" }}>
+		<div className="card" style={{ maxWidth: "auto", background: "grey" }}>
 			<div className="row no-gutters">
 				<div className="col-md-4">
-					<img src="..." alt="..." />
+					<img className="img-fluid" src={locationProps.url} alt="..." />
 				</div>
 				<div className="col-md-8">
 					<div className="card-body">
-						<h5 className="card-title">{locationProps}</h5>
-						<p className="card-text">
-							This is a wider card with supporting text below as a natural lead-in to additional content.
-							This content is a little bit longer.
-						</p>
-						<p className="card-text">
-							<small className="text-muted">Last updated 3 mins ago</small>
-						</p>
+						<h5 className="card-title">{locationProps.at0}</h5>
+						<div>
+							<p className="card-text">
+								{locationProps.label1}
+								{locationProps.at1}
+							</p>
+							<p className="card-text">
+								{locationProps.label2}
+								{locationProps.at2}
+							</p>
+							<p className="card-text">
+								{locationProps.label3}
+								{locationProps.at3}
+							</p>
+							<Link to="/">
+								<button type="button" className="btn btn-light">
+									Back to home
+								</button>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>

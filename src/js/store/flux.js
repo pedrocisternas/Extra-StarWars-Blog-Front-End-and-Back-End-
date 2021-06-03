@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			favorites: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -37,6 +38,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			addToFavorites: name => {
+				//get the store
+				// const store = getStore();
+
+				//we have to loop the entire demo array to look for the respective index
+				//and change its color
+				const newFavorites = getStore().favorites;
+				newFavorites.push(name);
+
+				//reset the global store
+				setStore({ favorites: newFavorites });
 			}
 		}
 	};
