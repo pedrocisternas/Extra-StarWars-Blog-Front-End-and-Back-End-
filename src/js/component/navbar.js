@@ -16,7 +16,7 @@ export const Navbar = props => {
 			</Link>
 			<div className="dropdown ml-auto">
 				<button
-					onClick={() => setShowDropdown(!showDropdown)}
+					onClick={() => store.favorites.length > 0 && setShowDropdown(!showDropdown)}
 					className="btn btn-danger dropdown-toggle"
 					type="button"
 					id="dropdownMenuButton"
@@ -34,9 +34,14 @@ export const Navbar = props => {
 						{store.favorites.map((elm, i) => {
 							return (
 								<li
-									className="dropdown-item list-group-item list-group-item-action list-group-item-light"
+									className="dropdown-item list-group-item list-group-item-action list-group-item-light d-flex justify-content-between"
 									key={i}>
-									{elm}
+									<span className="mr-2">{elm}</span>
+									<i
+										onClick={() => actions.removeFromFavorites(i)}
+										className="fa fa-trash mt-1"
+										aria-hidden="true"
+									/>
 								</li>
 							);
 						})}

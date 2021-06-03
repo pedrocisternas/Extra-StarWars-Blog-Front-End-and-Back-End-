@@ -7,7 +7,7 @@ export const Card = props => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="card" style={{ width: "18rem", height: "30rem", background: "grey", margin: "2rem" }}>
+		<div className="card" style={{ minWidth: "18rem", height: "30rem", background: "grey", margin: "2rem" }}>
 			<img src={props.url} className="card-img-top" alt="..." />
 			<div className="card-body d-flex flex-column justify-content-between">
 				<h5 className="card-title" style={{ font_weight: "bold", color: "white" }}>
