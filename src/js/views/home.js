@@ -52,7 +52,6 @@ export const Home = () => {
 	}, []);
 
 	return (
-		// d-flex flex-wrap
 		<div className="container-fluid">
 			<h1 className="title">Characters</h1>
 			<div className="justify-content-center c-wrapper">

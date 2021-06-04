@@ -5,6 +5,7 @@ import { Context } from "../store/appContext";
 
 export const Card = props => {
 	const { store, actions } = useContext(Context);
+	let found = store.favorites.find(element => element == props.at0);
 
 	return (
 		<div className="card" style={{ minWidth: "18rem", height: "30rem", background: "grey", margin: "2rem" }}>
@@ -37,8 +38,11 @@ export const Card = props => {
 							Details
 						</button>
 					</Link>
-					<button onClick={() => actions.addToFavorites(props.at0)} type="button" className="btn btn-danger">
-						<i className="far fa-heart" />
+					<button
+						onClick={found ? null : () => actions.addToFavorites(props.at0)}
+						type="button"
+						className="btn btn-danger">
+						{found ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
 					</button>
 				</div>
 			</div>

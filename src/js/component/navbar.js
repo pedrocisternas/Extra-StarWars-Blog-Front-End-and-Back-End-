@@ -38,7 +38,10 @@ export const Navbar = props => {
 									key={i}>
 									<span className="mr-2">{elm}</span>
 									<i
-										onClick={() => actions.removeFromFavorites(i)}
+										onClick={() => {
+											actions.removeFromFavorites(i);
+											if (store.favorites.length == 0) setShowDropdown(false);
+										}}
 										className="fa fa-trash mt-1"
 										aria-hidden="true"
 									/>
