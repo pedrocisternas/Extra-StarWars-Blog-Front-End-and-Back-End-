@@ -36,7 +36,7 @@ export const Navbar = props => {
 								<li
 									className="dropdown-item list-group-item list-group-item-action list-group-item-light d-flex justify-content-between"
 									key={i}>
-									<span className="mr-2">{elm}</span>
+									<span className="mr-2">{elm.name}</span>
 									<i
 										onClick={() => {
 											actions.removeFromFavorites(i);

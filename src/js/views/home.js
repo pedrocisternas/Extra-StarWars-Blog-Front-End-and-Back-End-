@@ -59,6 +59,7 @@ export const Home = () => {
 					characters.map((character, index) => (
 						<Card
 							url="https://lumiere-a.akamaihd.net/v1/images/cg-67-main_c6fbf68a.jpeg?region=158%2C0%2C964%2C542&width=480"
+							entity_type="character"
 							id={index + 1}
 							at0={character.name}
 							at1={character.gender}
@@ -78,6 +79,7 @@ export const Home = () => {
 					planets.map((planet, index) => (
 						<Card
 							url="https://lumiere-a.akamaihd.net/v1/images/aeos-prime-main_1af6e847.jpeg?region=0%2C0%2C1280%2C720&width=768"
+							entity_type="planet"
 							id={index + 1}
 							at0={planet.name}
 							at1={planet.climate}
@@ -97,6 +99,7 @@ export const Home = () => {
 					vehicles.map((vehicle, index) => (
 						<Card
 							url="https://lumiere-a.akamaihd.net/v1/images/zeta-class-imperial-shuttle-main_70266d5a.jpeg?region=0%2C0%2C1560%2C878&width=768"
+							entity_type="vehicle"
 							id={index + 1}
 							at0={vehicle.name}
 							at1={vehicle.model}

@@ -39,7 +39,7 @@ export const Card = props => {
 						</button>
 					</Link>
 					<button
-						onClick={found ? null : () => actions.addToFavorites(props.at0)}
+						onClick={found ? null : () => actions.addToFavorites(props.at0, props.id, props.entity_type)}
 						type="button"
 						className="btn btn-danger">
 						{found ? <i className="fas fa-heart" /> : <i className="far fa-heart" />}
@@ -51,6 +51,7 @@ export const Card = props => {
 };
 
 Card.propTypes = {
+	entity_type: PropTypes.string,
 	id: PropTypes.number,
 	at0: PropTypes.string,
 	at1: PropTypes.string,

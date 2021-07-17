@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			apiAddress: "https://3000-tan-cheetah-quo5qis1.ws-us11.gitpod.io",
+			user: "nate",
 			favorites: [],
 			demo: [
 				{
@@ -20,11 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -39,10 +36,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			addToFavorites: name => {
-				const newFavorites = getStore().favorites;
-				newFavorites.push(name);
-				setStore({ favorites: newFavorites });
+			loadFavorites: () => {
+				fetch(getStore().apiAddress + "/" + getStore().user + "/favorites")
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function(responseAsJson) {
+						// console.log(responseAsJson);
+						setStore({ favorites: responseAsJson.favorites });
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
+			addToFavorites: (name, id, entity_type) => {
+				if (entity_type == "planet") {
+					var type = "/favorite/planet/";
+				} else {
+					var type = "/favorite/person/";
+				}
+				fetch(getStore().apiAddress + type + id, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						name: name,
+						username: getStore().user
+					})
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function(responseAsJson) {
+						// console.log(responseAsJson);
+						setStore({ favorites: responseAsJson.favorites });
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			},
 			removeFromFavorites: index => {
 				const newFavorites = getStore().favorites;
