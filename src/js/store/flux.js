@@ -80,11 +80,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
-			removeFromFavorites: index => {
-				const newFavorites = getStore().favorites;
-				let newArray = newFavorites.filter((e, i) => i != index);
-				setStore({ favorites: newArray });
+			removeFromFavorites: (id, entity_type) => {
+				if (entity_type == "planet") {
+					var type = "/favorite/planet/";
+				} else {
+					var type = "/favorite/person/";
+				}
+				fetch(getStore().apiAddress + type + id, {
+					method: "DELETE",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						username: getStore().user
+					})
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(function(responseAsJson) {
+						// console.log(responseAsJson);
+						setStore({ favorites: responseAsJson.favorites });
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			}
+			// index => {
+			// 	const newFavorites = getStore().favorites;
+			// 	let newArray = newFavorites.filter((e, i) => i != index);
+			// 	setStore({ favorites: newArray });
+			// }
 		}
 	};
 };

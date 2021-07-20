@@ -54,7 +54,7 @@ export const Home = () => {
 	return (
 		<div className="container-fluid">
 			<h1 className="title">Characters</h1>
-			<div className="justify-content-center c-wrapper">
+			<div className="c-wrapper">
 				{characters.length > 1 &&
 					characters.map((character, index) => (
 						<Card
@@ -74,7 +74,7 @@ export const Home = () => {
 					))}
 			</div>
 			<h1 className="title">Planets</h1>
-			<div className="justify-content-center c-wrapper">
+			<div className="c-wrapper">
 				{planets.length > 1 &&
 					planets.map((planet, index) => (
 						<Card
@@ -94,7 +94,7 @@ export const Home = () => {
 					))}
 			</div>
 			<h1 className="title">Vehicles</h1>
-			<div className="justify-content-center c-wrapper">
+			<div className="c-wrapper">
 				{vehicles.length > 1 &&
 					vehicles.map((vehicle, index) => (
 						<Card

@@ -39,7 +39,7 @@ export const Navbar = props => {
 									<span className="mr-2">{elm.name}</span>
 									<i
 										onClick={() => {
-											actions.removeFromFavorites(i);
+											actions.removeFromFavorites(elm.entity_id, elm.entity_type);
 											if (store.favorites.length == 0) setShowDropdown(false);
 										}}
 										className="fa fa-trash mt-1"
