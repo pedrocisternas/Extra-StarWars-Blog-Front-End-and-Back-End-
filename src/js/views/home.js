@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../styles/home.scss";
 import { Card } from "../component/card.js";
+import { Context } from "../store/appContext";
 
 export const Home = () => {
 	const [characters, setCharacters] = useState([]);
 	const [planets, setPlanets] = useState([]);
 	const [vehicles, setVehicles] = useState([]);
+	const { store, actions } = useContext(Context);
 
 	useEffect(() => {
 		fetch("https://swapi.dev/api/people/")
@@ -53,6 +55,12 @@ export const Home = () => {
 
 	return (
 		<div className="container-fluid">
+			{/* <button onClick={actions.login} className="btn btn-success">
+				Login
+			</button>
+			<button onClick={actions.getHello} className="btn btn-warning">
+				Get Hello
+			</button> */}
 			<h1 className="title">Characters</h1>
 			<div className="c-wrapper">
 				{characters.length > 1 &&
