@@ -1,3 +1,5 @@
+Star Wars full stack web application. It is designed to display all of Star Wars characters, planets and vehicules, allowing user to explore and select their favorites.
+
 # WebApp boilerplate with React JS
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
 
